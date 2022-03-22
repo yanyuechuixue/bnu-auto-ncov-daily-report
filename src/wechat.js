@@ -18,7 +18,7 @@ const sendWechatMessage = async (payload, sendKey, params) => {
       responseType: 'json'
     })
     .json()
-  if (res.code || res.data.errno) {
+  if (res.code || res.data.code) {
     throw new Error(`微信通知消息加入推送队列失败：${JSON.stringify(res)}`)
   }
   Logger.log(
