@@ -3,7 +3,7 @@ const { Logger } = require('./logger')
 const { getBeijingTime, replaceInfoParams } = require('./util')
 
 const sendWechatMessage = async (payload, sendKey, params) => {
-  const url = `https://sctapi.ftqq.com/${sendKey}.send`
+  const url = `https://api2.pushdeer.com/message/push?pushkey=${sendKey}`
   const data = new URLSearchParams(
     Object.fromEntries(
       Object.entries(payload).map(([k, v]) => [k, replaceInfoParams(v, params)])
@@ -22,7 +22,7 @@ const sendWechatMessage = async (payload, sendKey, params) => {
     throw new Error(`微信通知消息加入推送队列失败：${JSON.stringify(res)}`)
   }
   Logger.log(
-    `微信通知消息已加入推送队列，pushid: ${res.data.pushid}，readkey: ${res.data.readkey}`
+    `微信通知消息已加入推送队列，code: ${res.data.code}`
   )
 }
 
