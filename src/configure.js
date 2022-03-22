@@ -128,8 +128,8 @@ const checkWechatConfig = (wechatConfig) => {
   if (!wechatConfig.payload) {
     throw payloadError
   }
-  const { title, desp } = wechatConfig.payload
-  if (!title || !desp) {
+  const { text, desp } = wechatConfig.payload
+  if (!text || !desp) {
     throw payloadError
   }
 }
@@ -176,9 +176,9 @@ const loadConfig = () => {
     configCMD.wechat_sendkey || configFile.wechat_sendkey || null
   let wechatConfig = null
   if (wechat) {
-    const { title, desp } = wechatTemplate
+    const { text, desp } = wechatTemplate
     wechatConfig = {
-      payload: { title, desp },
+      payload: { text, desp },
       sendKey: wechat_sendkey
     }
     checkWechatConfig(wechatConfig)
